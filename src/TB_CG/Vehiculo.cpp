@@ -420,4 +420,10 @@ void CVehiculo::_Draw_3DS_Object(int pX, int pY, int pZ, int pSize)
 void CVehiculo::colision()
 {
 	aceleracion*=-1/0.1;
+	cout<<"colision"<<endl;
+}
+
+//me devuelve el vector de disparos para detectar las colisiones.
+vector<CDisparo*> CVehiculo::getDisparos(){
+	return disparos;
 }

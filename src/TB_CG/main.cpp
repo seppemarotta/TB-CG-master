@@ -45,6 +45,7 @@ CAIController* aiController; //para hacer mas enemigo crear un vector de esta cl
 CCamera* camera;
 CMapa* mapa;
 
+vector<CObject*> objmapa;
 
 GLvoid establishProjectionMatrix(GLsizei width, GLsizei height){
 	glViewport(0, 0, width, height);
@@ -322,6 +323,35 @@ GLboolean checkKeys(GLvoid){
 	return false;
 }
 
+void DetectCollisions(){
+	//valortemporal del ancho del barrido
+	int abarrido=5;
+
+	int n=objmapa.size();
+	//por cada auto
+	for (int i=0;i<n;i++){
+		vector<CDisparo*> aux=dynamic_cast<CVehiculo*>(objmapa[i])->getDisparos();
+		for(int j=0;j<aux.size();j++)
+		{
+			//si no son los mismos
+			if(i!=j){	
+		/*		
+				if(aux[j]->getPos().y-abarrido<=objmapa[i]->gety()+abarrido &&
+					aux[j]->getPos().y+abarrido>=objmapa[i]->gety()-abarrido)
+				//x1				//y2
+				if(      aux[j]->getPos().x-abarrido<=objmapa[i]->getx()+abarrido &&
+						 aux[j]->getPos().x+abarrido>=objmapa[i]->getx()-abarrido)
+				{
+					aux[j]->colision();
+				}
+			*/
+			}
+			
+			}
+	}
+}
+
+
 int main(int argc, char *argv[])
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -348,7 +378,11 @@ int main(int argc, char *argv[])
 	aiVehiculo = new CVehiculo();
 	aiController = new CAIController();
 	aiController->asignarVehiculo(aiVehiculo);
-
+	
+	//vector de punteros de todos los objetos del mapa
+	objmapa.push_back(aiVehiculo);
+	objmapa.push_back(playerVehiculo);
+	
 	camera = new CCamera();
 
 	mapa = new CMapa(NOMBREMAPA);
@@ -374,7 +408,7 @@ int main(int argc, char *argv[])
 	{
 		//Start cap timer 
 		capTimer.start();
-
+		DetectCollisions();
 		SDL_Event event;
 		while (SDL_PollEvent(&event))
 		{

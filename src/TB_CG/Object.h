@@ -16,10 +16,10 @@ class CObject
 protected:
 	property(float, x); property(float, y); property(float, z);//posicion centro pegado al lado de abajo del Object (cambiar por un vector posicion)
 	property(float, largo);property(float, ancho);
-
+	
 public:
 	CObject(void);
 	~CObject(void);
-
+	virtual void colision() const{}
 
 };

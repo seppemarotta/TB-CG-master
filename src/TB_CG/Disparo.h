@@ -1,6 +1,8 @@
 #pragma once
+#include "Object.h"
 #include "Util.h"
 
+//bala
 class CDisparo
 {
 public: //cambiar a private luego
@@ -14,8 +16,9 @@ public: //cambiar a private luego
 public:
 	CDisparo(float x, float y, float z, Vector3* pvDireccion);
 	~CDisparo(void);
-
+	Vector3 getPos();
 	void mover();
+	void colision();
 	void dibujar();
 };
 

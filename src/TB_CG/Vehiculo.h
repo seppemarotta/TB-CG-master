@@ -73,4 +73,5 @@ public:
 	void disparar();
 	// si el vehiculo choca con algo.
 	void colision();
+	vector<CDisparo*> getDisparos();
 };

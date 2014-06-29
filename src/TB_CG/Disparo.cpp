@@ -17,6 +17,14 @@ CDisparo::~CDisparo(void)
 {
 }
 
+Vector3 CDisparo::getPos()
+{
+	return vPosicion;
+}
+void CDisparo::colision(){
+	bActivo=false;
+	printf("colision\n----------------\n");
+}
 void CDisparo::mover(){
 	vPosicion += vDireccion * velocidad *dTiempo;
 
